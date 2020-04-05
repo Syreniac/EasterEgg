@@ -46,6 +46,10 @@ $(document).ready(function(){
 		var list = document.getElementById('feed');
 		list.insertBefore(newSpan, list.childNodes[0]);
 		
+		if(list.childNodes.length > 5){
+			list.removeChild(list.childNodes[5]);
+		}
+		
 		var username = msg.message.split(' ')[0];
 		console.log(username);
 		
