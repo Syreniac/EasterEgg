@@ -39,7 +39,7 @@ def scoreboard():
 @login_required
 def easter_egg(easter_egg ):
 	if easter_egg in current_user.eggs:
-		return "You've already found "+easter_egg
+		return render_template("duplicateEgg.html", title="You've already found this egg!")
 	current_user.eggs.add(str(easter_egg))
 	current_user.save()
 	pub.sendMessage('rootTopic', arg1=current_user.username+" found egg "+easter_egg)
@@ -83,4 +83,7 @@ def connect():
     print('Client connected')
 
 if __name__ == '__main__':
-    socketio.run(app)
+	try:
+		socketio.run(app)
+	except Exception as E:
+		print(E)

@@ -3,6 +3,29 @@
 * {
   margin: 0px;
   padding: 0px;
+  font-family: 'Lobster', cursive;
+}
+
+#liveDiv {
+	position: absolute;
+	right: 0;
+	width: 15%;
+	max-width: 300px;
+	height: 80%;
+	margin: 15px;
+}
+
+#scoreboardDiv {
+	display: block;
+	width: 80%;
+}
+
+#scoreTable {
+	overflow-y: auto;
+}
+
+.feed {
+	overflow-y: auto;
 }
 
 html {
@@ -23,12 +46,21 @@ h1 {
   text-align: center;
 }
 
+h2 {
+  font-family: 'Lobster', cursive;
+  font-size: 20px;
+  color: #6D59A7;;
+  text-shadow: 1px 0px 0px white;
+  text-align: center;
+}
+
+
 th {
   font-family: 'Lobster', cursive;
   font-size: 45px;
   color: #6D59A7;
   text-shadow: 3px 0px 0px white;
-  padding: 5%;
+  padding: 15px;
 }
 
 td {
@@ -45,7 +77,8 @@ td {
   margin: 1em auto;
   text-align: center;
   display: inline-flex;
-  min-width: 100%;
+  max-width: 100%;
+  width: 100%;
 }
 .egg {
   width: 140px;
@@ -104,6 +137,7 @@ td {
 
 .feedElement {
 	display: block;
+	text-align: center;
 }
 
 #fringe { 

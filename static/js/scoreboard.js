@@ -1,3 +1,4 @@
+const max_feed_length = 30;
 
 $(document).ready(function(){
 	function sortTable() {
@@ -46,8 +47,11 @@ $(document).ready(function(){
 		var list = document.getElementById('feed');
 		list.insertBefore(newSpan, list.childNodes[0]);
 		
-		if(list.childNodes.length > 5){
-			list.removeChild(list.childNodes[5]);
+		while(list.childNodes.length > max_feed_length){
+			list.removeChild(list.childNodes[list.childNodes.length - 1])
+		}
+		for (i = 0; i < list.childNodes.length; i++){
+			list.childNodes[i].style.opacity = (1.0 - (i * (0.7 / max_feed_length))).toString();
 		}
 		
 		var username = msg.message.split(' ')[0];
