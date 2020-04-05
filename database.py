@@ -1,6 +1,7 @@
 from pydblite import Base
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
+import traceback 
 
 db = Base('easteregg')
 
@@ -23,10 +24,11 @@ class User(UserMixin):
 			if self.id is None:
 				self.id = db.insert(username=self.username, password=self.password, eggs=self.eggs)
 			else:
-				db.update(self.id, username=self.username, password=self.password, eggs=self.eggs)
+				db.update(db[self.id], username=self.username, password=self.password, eggs=self.eggs)
 			db.commit()
 			return True
 		except Exception as E:
+			traceback.print_exc(E)
 			return False
 			
 def create_user(username, email, raw_password):

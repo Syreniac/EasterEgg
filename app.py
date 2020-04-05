@@ -38,6 +38,8 @@ def scoreboard():
 @app.route('/easterEgg/<easter_egg>')
 @login_required
 def easter_egg(easter_egg ):
+	if easter_egg in current_user.eggs:
+		return "You've already found "+easter_egg
 	current_user.eggs.add(str(easter_egg))
 	current_user.save()
 	pub.sendMessage('rootTopic', arg1=current_user.username+" found egg "+easter_egg)
