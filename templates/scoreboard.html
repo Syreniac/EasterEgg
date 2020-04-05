@@ -13,7 +13,7 @@
     <div class="stripe"></div>
     <div class="stripe"></div>
   </div>
-  <table>
+  <table id="scoreTable">
   <tr>
 	<th>Username</th>
 	<th>Score</th>
@@ -32,22 +32,6 @@
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script>
-$(document).ready(function(){
-	console.log('connecting')
-    //connect to the socket server.
-    var socket = io.connect('http://' + document.domain + ':' + location.port);
-    //receive message details from server
-    socket.on('newmessage', function(msg) {
-        console.log("Received message" + msg.message);
-		var newSpan = document.createElement('span');
-		newSpan.textContent = msg.message;
-		newSpan.className = 'feedElement';
-		var list = document.getElementById('feed');
-		list.insertBefore(newSpan, list.childNodes[0])
-    });
-
-});
-    </script>
+    <script src="{{ url_for('static', filename='js/scoreboard.js') }}"></script>
 </section>
 {% endblock %}
