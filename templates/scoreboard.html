@@ -5,6 +5,14 @@
   <h1>
     Scoreboard
   </h1>
+<div class="eggs">
+  <div class="egg egg-left">
+    <div class="stripe"></div>
+    <div class="stripe"></div>
+    <div class="stripe"></div>
+    <div class="stripe"></div>
+    <div class="stripe"></div>
+  </div>
   <table>
   <tr>
 	<th>Username</th>
@@ -13,25 +21,34 @@
   {% for user in all_users %}
     <tr>
 	  <td>{{user.username}}</td>
-	  <td>{{user.eggs|length}}</td>
+	  <td class="score">{{user.eggs|length}}</td>
 	</tr>
   {% endfor %}
   </table>
+  <div class="egg egg-right">
+  </div>
+</div>
+  <div id="feed">
+  </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
 $(document).ready(function(){
+	console.log('connecting')
     //connect to the socket server.
     var socket = io.connect('http://' + document.domain + ':' + location.port);
     //receive message details from server
     socket.on('newmessage', function(msg) {
         console.log("Received message" + msg.message);
-        message = '<p>' + msg.message + '</p>';
-
-        $('#message').append(message);
+		var newSpan = document.createElement('span');
+		newSpan.textContent = msg.message;
+		newSpan.className = 'feedElement';
+		var list = document.getElementById('feed');
+		list.insertBefore(newSpan, list.childNodes[0])
     });
 
 });
     </script>
+		<img src="https://cdn.clipart.email/cb3b4b3779fb910952adc0a17aa8585e_easter-grass-transparent-png-clip-art-image-gallery-_8000-1759.png" alt="Easter" id="fringe"/>
 </section>
 {% endblock %}
