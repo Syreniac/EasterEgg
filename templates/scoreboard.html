@@ -17,5 +17,21 @@
 	</tr>
   {% endfor %}
   </table>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+$(document).ready(function(){
+    //connect to the socket server.
+    var socket = io.connect('http://' + document.domain + ':' + location.port);
+    //receive message details from server
+    socket.on('newmessage', function(msg) {
+        console.log("Received message" + msg.message);
+        message = '<p>' + msg.message + '</p>';
+
+        $('#message').append(message);
+    });
+
+});
+    </script>
 </section>
 {% endblock %}
