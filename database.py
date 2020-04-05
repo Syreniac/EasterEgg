@@ -5,7 +5,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 db = Base('easteregg')
 
 # Password stored as a hash
-db.create('username','password','eggs', mode='open')
+db.create('username','password','eggs','email', mode='open')
 
 class User(UserMixin):
 	def __init__(self, **kwargs):
@@ -13,10 +13,7 @@ class User(UserMixin):
 		self.username = kwargs['username']
 		# Stored as a hash 
 		self.password = kwargs['password']
-		self.eggs = kwargs['eggs']
-
-	def set_password(self, password):
-		self.password = generate_password_hash(password)
+		self.eggs = kwargs['eggs'] if 'eggs' in kwargs else []
 
 	def check_password(self, password):
 		return check_password_hash(self.password, password)
@@ -31,6 +28,9 @@ class User(UserMixin):
 			return True
 		except Exception as E:
 			return False
+			
+def create_user(username, email, raw_password):
+	return User(username = username, email = email, password = generate_password_hash(raw_password))
 
 def load_user(user_id):
 	return User(**db[int(user_id)])
@@ -41,10 +41,18 @@ def find_user_by_username(username):
 			return User(**user)
 	return None
 
+def username_exists(username):
+	for user in db:
+		print(user['username'])
+		if user['username'] == username:
+			return True
+	return False
+
+def email_exists(email):
+	for user in db:
+		if user['email'] == email:
+			return True
+	return False
+
 if db.exists:
 	db.open()
-	
-user = User(username='Test', password=generate_password_hash('Hunter2'), eggs=['cs-tc3-dev100'])
-user.save()
-user = load_user(user.get_id())
-print(user.eggs)
