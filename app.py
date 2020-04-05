@@ -43,7 +43,7 @@ def easter_egg(easter_egg ):
 	current_user.eggs.add(str(easter_egg))
 	current_user.save()
 	pub.sendMessage('rootTopic', arg1=current_user.username+" found egg "+easter_egg)
-	return "You found "+easter_egg
+	return render_template('foundEgg.html', title='You found an egg!', egg_name=easter_egg)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -80,7 +80,6 @@ def register():
 	
 @socketio.on('connect')
 def connect():
-    pub.sendMessage('rootTopic', arg1='connected to socket')
     print('Client connected')
 
 if __name__ == '__main__':
