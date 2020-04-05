@@ -3,7 +3,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import DataRequired
 from flask_login import current_user, login_user, LoginManager, login_required, current_user
-from database import load_user, find_user_by_username, create_user
+from database import load_user, find_user_by_username, create_user, get_all_users
 from registration_form import RegistrationForm
 from config import Config
 from werkzeug.urls import url_parse
@@ -19,14 +19,16 @@ login = LoginManager(app)
 login.user_loader(load_user)
 login.login_view = 'register'
 
+@app.route('/')
 @app.route('/scoreboard')
 def scoreboard():
-	return "Hello world!"
+	return render_template('scoreboard.html', title='Scoreboard', all_users = sorted(get_all_users(), key = lambda x:  len(x['eggs']), reverse=True))
 
 @app.route('/easterEgg/<easter_egg>')
 @login_required
 def easter_egg(easter_egg ):
-	print(current_user)
+	current_user.eggs.add(str(easter_egg))
+	current_user.save()
 	return "You found "+easter_egg
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -42,7 +44,7 @@ def login():
 		login_user(user, remember=True)
 		next_page = request.args.get('next')
 		if not next_page or url_parse(next_page).netloc != '':
-			next_page = url_for('index')
+			next_page = url_for('scoreboard')
 		return redirect(next_page)
 	return render_template('login.html', title='Sign In', form=form)
 	
@@ -58,6 +60,6 @@ def register():
 		login_user(user, remember=True)
 		next_page = request.args.get('next')
 		if not next_page or url_parse(next_page).netloc != '':
-			next_page = url_for('index')
+			next_page = url_for('scoreboard')
 		return redirect(next_page)
 	return render_template('register.html', title='Register', form=form)

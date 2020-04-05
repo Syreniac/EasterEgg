@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="content">
+  <h1>
+    Scoreboard
+  </h1>
+  <table>
+  <tr>
+	<th>Username</th>
+	<th>Score</th>
+  </tr>
+  {% for user in all_users %}
+    <tr>
+	  <td>{{user.username}}</td>
+	  <td>{{user.eggs|length}}</td>
+	</tr>
+  {% endfor %}
+  </table>
+</section>
+{% endblock %}

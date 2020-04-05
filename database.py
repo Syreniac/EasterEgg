@@ -13,7 +13,7 @@ class User(UserMixin):
 		self.username = kwargs['username']
 		# Stored as a hash 
 		self.password = kwargs['password']
-		self.eggs = kwargs['eggs'] if 'eggs' in kwargs else []
+		self.eggs = kwargs['eggs'] if 'eggs' in kwargs else set()
 
 	def check_password(self, password):
 		return check_password_hash(self.password, password)
@@ -53,6 +53,12 @@ def email_exists(email):
 		if user['email'] == email:
 			return True
 	return False
+	
+def get_all_users():
+	l = []
+	for user in db:
+		l.append(user)
+	return l
 
 if db.exists:
 	db.open()
