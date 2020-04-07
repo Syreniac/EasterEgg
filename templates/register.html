@@ -1,6 +1,7 @@
-{% extends "base.html" %}
+{% extends "wobblyeggs.html" %}
 
-{% block content %}
+{% block innercontent %}
+<section class="content">
     <h1>Register</h1>
     <form action="" method="post">
         {{ form.hidden_tag() }}
@@ -33,6 +34,8 @@
             {% endfor %}
         </p>
         <p>{{ form.submit() }}</p>
-		 <p>Already registered? <a href="{{ url_for('login') }}">Click to Login!</a></p>
+		 <span>Already registered?</span>
+		 <a href="{{ url_for('login') }}">Click to Login!</a></p>
     </form>
+</section>
 {% endblock %}

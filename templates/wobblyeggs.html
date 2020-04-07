@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="eggs">
+  <div style="width:25%;">
+	  <div class="egg egg-left">
+		<div class="stripe"></div>
+		<div class="stripe"></div>
+		<div class="stripe"></div>
+		<div class="stripe"></div>
+		<div class="stripe"></div>
+	  </div>
+  </div>
+  {% block innercontent %}{% endblock %}
+  <div style="width:25%;">
+	  <div class="egg egg-right">
+	  </div>
+  </div>
+</div>
+{% endblock %}
