@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<content class="content">
+  <h1>
+    Stop cheating!
+  </h1>
+  <img src="{{ url_for('static', filename='img/cheat_bird.png') }}" alt="Baby bird is judging you" style="max-height: 15%;"/>
+<a href="{{ url_for('scoreboard') }}">Return to the scoreboard?</a></p>
+</content>
+{% endblock %}

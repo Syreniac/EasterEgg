@@ -11,6 +11,8 @@ from config import Config
 from werkzeug.urls import url_parse
 from pubsub import pub
 from flask_socketio import SocketIO, emit
+from egg_database import validate_egg_key
+
 
 class LoginForm(FlaskForm):
 	username = StringField('Username', validators=[DataRequired()])
@@ -37,9 +39,12 @@ pub.subscribe(listener, 'rootTopic')
 def scoreboard():
 	return render_template('scoreboard.html', title='Scoreboard', all_users = sorted(get_all_users(), key = lambda x:  len(x['eggs']), reverse=True))
 
-@app.route('/easterEgg/<easter_egg>')
+@app.route('/egg/<easter_egg>')
 @login_required
 def easter_egg(easter_egg ):
+	key = request.args.get('key')
+	if not validate_egg_key(easter_egg, key):
+		return render_template('stop_cheating.html', title="Stop cheating!")
 	if easter_egg in current_user.eggs:
 		return render_template("duplicateEgg.html", title="You've already found this egg!")
 	current_user.eggs.add(str(easter_egg))
@@ -50,7 +55,7 @@ def easter_egg(easter_egg ):
 @app.route('/login', methods=['GET', 'POST'])
 def login():
 	if current_user.is_authenticated:
-		return redirect(url_for('index'))
+		return redirect(url_for('scoreboard'))
 	form = LoginForm()
 	if form.validate_on_submit():
 		user = find_user_by_username(form.username.data)
