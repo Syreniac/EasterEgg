@@ -3,7 +3,7 @@ from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 import traceback 
 
-db = Base('easteregg')
+db = Base('users')
 
 # Password stored as a hash
 db.create('username','password','eggs','email', mode='open')

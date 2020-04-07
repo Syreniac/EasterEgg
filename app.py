@@ -11,7 +11,9 @@ from config import Config
 from werkzeug.urls import url_parse
 from pubsub import pub
 from flask_socketio import SocketIO, emit
-from egg_database import validate_egg_key
+from egg_database import validate_egg_key, egg_exists, create_egg
+from flask import jsonify
+from json import dumps
 
 
 class LoginForm(FlaskForm):
@@ -84,6 +86,15 @@ def register():
 			next_page = url_for('scoreboard')
 		return redirect(next_page)
 	return render_template('register.html', title='Register', form=form)
+	
+@app.route('/add_egg/<location>', methods=['PUT'])
+def add_egg(location):
+	if egg_exists(location):
+		return (dumps({'Error':"Egg already registered for that location"}),409)
+	json = jsonify(create_egg(location))
+	json.status_code = 200
+	return json
+	
 	
 @socketio.on('connect')
 def connect():
