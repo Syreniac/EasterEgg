@@ -3,16 +3,20 @@
 {% block innercontent %}
 <section class="content">
   <table id="scoreTable">
+  <thead>
   <tr>
 	<th>Username</th>
 	<th>Score</th>
   </tr>
+  </thead>
+  <tbody>
   {% for user in all_users %}
     <tr>
 	  <td>{{user.username}}</td>
 	  <td class="score">{{user.eggs|length}}</td>
 	</tr>
   {% endfor %}
+  </tbody>
   </table>
 <div id="liveDiv">
   <h2>Live Results</h2>
