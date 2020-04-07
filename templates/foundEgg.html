@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
+<content class="content">
   <h1>
-    You found the  {{egg_name}} egg
+    You found the {{egg_name}} egg
   </h1>
 <div class="eggs">
   <div class="egg egg-left">
@@ -13,4 +14,6 @@
     <div class="stripe"></div>
   </div>
 </div>
+<a href="{{ url_for('scoreboard') }}">Return to the scoreboard?</a></p>
+</content>
 {% endblock %}
