@@ -6,22 +6,43 @@
   font-family: 'Lobster', cursive;
 }
 
+.content {
+	width: 100%;
+	display: block;
+}
+
 #liveDiv {
-	position: absolute;
-	right: 0;
-	width: 15%;
-	max-width: 300px;
-	height: 80%;
-	margin: 15px;
+	float: right;
+	height: 100%;
+	margin: 1%;
+	width: 48%;
+}
+
+a {
+	display: block;
+	text-align: center;
+}
+
+input {
+	width: 100%;
+	background: transparent;
+	font-size: 20px;
+}
+
+input[type=button], input[type=submit], input[type=reset] {
+	max-width: 50%;
 }
 
 #scoreboardDiv {
 	display: block;
-	width: 80%;
+	width: 100%;
 }
 
 #scoreTable {
 	overflow-y: auto;
+	float: left;
+	width: 48%;
+	margin: 1%
 }
 
 .feed {
@@ -34,7 +55,7 @@ html {
 
 body {
   margin-top: 3em;
-  background-color: #F5B1AC; 
+  background-color: lightskyblue; 
 }
 
 h1 {
@@ -48,9 +69,9 @@ h1 {
 
 h2 {
   font-family: 'Lobster', cursive;
-  font-size: 20px;
+  font-size: 45px;
   color: #6D59A7;;
-  text-shadow: 1px 0px 0px white;
+  text-shadow: 2px 0px 0px white;
   text-align: center;
 }
 
@@ -59,8 +80,9 @@ th {
   font-family: 'Lobster', cursive;
   font-size: 45px;
   color: #6D59A7;
-  text-shadow: 3px 0px 0px white;
+  text-shadow: 2px 0px 0px white;
   padding: 15px;
+  padding-top: 0px;
 }
 
 td {
