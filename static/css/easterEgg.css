@@ -11,6 +11,10 @@
 	display: block;
 }
 
+img {
+	z-index: -1;
+}
+
 #liveDiv {
 	float: right;
 	height: 100%;
@@ -28,6 +32,7 @@ thead {
 a {
 	display: block;
 	text-align: center;
+	z-index: 2;
 }
 
 input {
@@ -126,30 +131,6 @@ td {
   height: 20%;
 }
 
-.stripe:not(:first-child) {
-  border-top: 2px solid #fff;
-}
-
-.stripe:nth-child(1) {
-  background-color: #FFBDE8;
-}
-
-.stripe:nth-child(2) {
-  background-color: #BDE8FF;
-}
-
-.stripe:nth-child(3) {
-  background-color: #E8FFBD;
-}
-
-.stripe:nth-child(4) {
-  background-color: #FFE8BD;
-}
-
-.stripe:nth-child(5) {
-  background-color: #E8BDFF;
-}
-
 @keyframes egg-left-animation {
   0% {
     transform: rotate(-15deg);
@@ -179,6 +160,7 @@ td {
   left:0;
   bottom: 0;
   overflow: hidden;
+  z-index: -1;
 }
 
 .egg-left {
