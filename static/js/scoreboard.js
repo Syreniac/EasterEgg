@@ -71,7 +71,7 @@ $(document).ready(function(){
 		while(list.childNodes.length > max_feed_length){
 			list.removeChild(list.childNodes[list.childNodes.length - 1])
 		}
-		for (i = 0; i < list.childNodes.length; i++){
+		for (i = 0; i < list.childNodes.length - 1; i++){
 			list.childNodes[i].style.opacity = (1.0 - (i * (0.7 / max_feed_length))).toString();
 		}
 		
