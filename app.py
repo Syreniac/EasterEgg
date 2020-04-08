@@ -103,6 +103,6 @@ def connect():
 
 if __name__ == '__main__':
 	try:
-		socketio.run(app)
+		socketio.run(app, host='0.0.0.0', port=80)
 	except Exception as E:
 		print(E)
