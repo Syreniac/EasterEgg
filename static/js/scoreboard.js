@@ -41,11 +41,32 @@ $(document).ready(function(){
     //receive message details from server
     socket.on('newmessage', function(msg) {
         console.log("Received message" + msg.message);
+		var newDiv = document.createElement('div');
+		var eggHolder = document.createElement('div');
+		var newEgg = document.createElement('div');
+		eggHolder.style.display='table-cell';
+		eggHolder.style.paddingRight='10px';
+		eggHolder.style.textAlign='right';
+		eggHolder.style.paddingLeft='50px';
+		newEgg.className = 'egg egg-left eggify';
+		newEgg.style.height = '40px';
+		newEgg.style.width = '28px';
+		newEgg.dataset.seed = msg.seed;
+		eggify(newEgg);
+		var spanHolder = document.createElement('div');
+		spanHolder.style.display='table-cell';
+		spanHolder.style.verticalAlign='middle';
+		spanHolder.style.paddingLeft='10px';
+		spanHolder.style.textAlign='left';
 		var newSpan = document.createElement('span');
 		newSpan.textContent = msg.message;
 		newSpan.className = 'feedElement';
+		eggHolder.appendChild(newEgg);
+		spanHolder.appendChild(newSpan);
+		newDiv.appendChild(eggHolder);
+		newDiv.appendChild(spanHolder);
 		var list = document.getElementById('feed');
-		list.insertBefore(newSpan, list.childNodes[0]);
+		list.insertBefore(newDiv, list.childNodes[0]);
 		
 		while(list.childNodes.length > max_feed_length){
 			list.removeChild(list.childNodes[list.childNodes.length - 1])

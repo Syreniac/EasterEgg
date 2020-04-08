@@ -8,7 +8,9 @@ function eggify(element){
 	}
 	for(i = 0; i < 5; i++){
 		var new_div = document.createElement("div");
-		new_div.style.backgroundColor = EGGIFY_COLOURS[(i + seed) % EGGIFY_COLOURS.length];
+		var index = (i + seed) % EGGIFY_COLOURS.length;
+		console.log(index);
+		new_div.style.backgroundColor = EGGIFY_COLOURS[index];
 		if(i != 0){
 			new_div.style.borderTop = "2px solid #fff";
 		}
@@ -18,4 +20,4 @@ function eggify(element){
 }
 
 document.addEventListener('DOMContentLoaded', function(){
-Array.from(document.getElementsByClassName("eggify")).forEach(eggify);
+Array.from(document.getElementsByClassName("eggify")).forEach(eggify)});

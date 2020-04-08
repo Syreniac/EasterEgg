@@ -28,10 +28,10 @@ login.user_loader(load_user)
 login.login_view = 'register'
 socketio = SocketIO(app, async_mode=None, logger=True, engineio_logger=True)
 
-def listener(arg1):
+def listener(arg1,seed):
     print('Function listener1 received:')
     print('  arg1 =', arg1)
-    socketio.emit('newmessage',{'message':arg1})
+    socketio.emit('newmessage',{'message':arg1,'seed':seed})
 
 
 pub.subscribe(listener, 'rootTopic')
@@ -51,8 +51,9 @@ def easter_egg(easter_egg ):
 		return render_template("duplicateEgg.html", title="You've already found this egg!")
 	current_user.eggs.add(str(easter_egg))
 	current_user.save()
-	pub.sendMessage('rootTopic', arg1=current_user.username+" found egg "+easter_egg)
-	return render_template('foundEgg.html', title='You found an egg!', egg_name=easter_egg, egg_seed=get_egg_seed(easter_egg))
+	seed = get_egg_seed(easter_egg)
+	pub.sendMessage('rootTopic', arg1=current_user.username+" found egg "+easter_egg, seed=seed)
+	return render_template('foundEgg.html', title='You found an egg!', egg_name=easter_egg, egg_seed=seed)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
