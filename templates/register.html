@@ -1,39 +1,68 @@
 {% extends "wobblyeggs.html" %}
 
+{% block head %}
+	{{ super() }}
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/sliders.css') }}">
+		<script src="{{ url_for('static', filename='js/sliders.js') }}"></script>
+{% endblock %}
+
 {% block innercontent %}
 <section class="content">
     <h1>Register</h1>
     <form action="" method="post">
         {{ form.hidden_tag() }}
         <p>
-            {{ form.username.label }}<br>
-            {{ form.username(size=32) }}<br>
+			<div class="container">
+			  {{ form.username(size=32, onchange='slider_onchange(this);', onload='slider_onload(this);', class="contained") }}
+			  <div class="overlay">
+				{{ form.username.label(class='text') }}
+			  </div>
+			</div>
             {% for error in form.username.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
         <p>
-            {{ form.email.label }}<br>
-            {{ form.email(size=64) }}<br>
+			<div class="container">
+			  {{ form.email(size=64, onchange='slider_onchange(this);', onload='slider_onload(this);', class="contained") }}
+			  <div class="overlay">
+				{{ form.email.label(class='text') }}
+			  </div>
+			</div>
             {% for error in form.email.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
         <p>
-            {{ form.password.label }}<br>
-            {{ form.password(size=32) }}<br>
+			<div class="container">
+			  {{ form.password(size=32, onchange='slider_onchange(this);', onload='slider_onload(this);', class="contained") }}
+			  <div class="overlay">
+				{{ form.password.label(class='text') }}
+			  </div>
+			</div>
             {% for error in form.password.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
         <p>
-            {{ form.password2.label }}<br>
-            {{ form.password2(size=32) }}<br>
+			<div class="container">
+			  {{ form.password2(size=32, onchange='slider_onchange(this);', onload='slider_onload(this);', class="contained") }}
+			  <div class="overlay">
+				{{ form.password2.label(class='text') }}
+			  </div>
+			</div>
             {% for error in form.password2.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
         <p>{{ form.submit() }}</p>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+		{% for message in messages %}
+		<span style="text-align: center; margin:auto; display:block;">{{ message }}</span>
+		{% endfor %}
+        {% endif %}
+        {% endwith %}
 		 <span>Already registered?</span>
 		 <a href="{{ url_for('login') }}">Click to Login!</a></p>
     </form>
