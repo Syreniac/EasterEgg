@@ -11,7 +11,7 @@ from config import Config
 from werkzeug.urls import url_parse
 from pubsub import pub
 from flask_socketio import SocketIO, emit
-from egg_database import validate_egg_key, egg_exists, create_egg
+from egg_database import validate_egg_key, egg_exists, create_egg, get_egg_seed
 from flask import jsonify
 from json import dumps
 
@@ -52,7 +52,7 @@ def easter_egg(easter_egg ):
 	current_user.eggs.add(str(easter_egg))
 	current_user.save()
 	pub.sendMessage('rootTopic', arg1=current_user.username+" found egg "+easter_egg)
-	return render_template('foundEgg.html', title='You found an egg!', egg_name=easter_egg)
+	return render_template('foundEgg.html', title='You found an egg!', egg_name=easter_egg, egg_seed=get_egg_seed(easter_egg))
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

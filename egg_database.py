@@ -20,6 +20,12 @@ def egg_exists(name):
 			return True
 	return False
 	
+def get_egg_seed(name):
+	for egg in db:
+		if egg['name'] == name:
+			return egg['seed']
+	return 0
+	
 def create_egg(name):
 	unhashed_key = ''.join([random.choice(string.ascii_letters + string.digits) for n in range(32)])
 	key = generate_password_hash(unhashed_key)
