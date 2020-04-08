@@ -33,28 +33,6 @@
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
-        <p>
-			<div class="container">
-			  {{ form.password(size=32, onchange='slider_onchange(this);', onload='slider_onload(this);', class="contained") }}
-			  <div class="overlay">
-				{{ form.password.label(class='text') }}
-			  </div>
-			</div>
-            {% for error in form.password.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-			<div class="container">
-			  {{ form.password2(size=32, onchange='slider_onchange(this);', onload='slider_onload(this);', class="contained") }}
-			  <div class="overlay">
-				{{ form.password2.label(class='text') }}
-			  </div>
-			</div>
-            {% for error in form.password2.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
         <p>{{ form.submit() }}</p>
         {% with messages = get_flashed_messages() %}
         {% if messages %}

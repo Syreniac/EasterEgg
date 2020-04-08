@@ -24,18 +24,6 @@
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
-        <p>
-			<div class="container">
-			  {{ form.password(size=32, onchange='slider_onchange(this);', onload='slider_onload(this);', class="contained") }}
-			  <div class="overlay">
-				{{ form.password.label(class='text') }}
-			  </div>
-			</div>
-            <br>
-            {% for error in form.password.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
         <p>{{ form.submit() }}</p>
     </form>
         {% with messages = get_flashed_messages() %}

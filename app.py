@@ -2,7 +2,7 @@ import eventlet
 eventlet.monkey_patch()
 from flask import Flask, render_template, flash, redirect, url_for, request
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms import StringField, BooleanField, SubmitField
 from wtforms.validators import DataRequired
 from flask_login import current_user, login_user, LoginManager, login_required, current_user
 from database import load_user, find_user_by_username, create_user, get_all_users
@@ -18,7 +18,6 @@ from json import dumps
 
 class LoginForm(FlaskForm):
 	username = StringField('Username', validators=[DataRequired()])
-	password = PasswordField('Password', validators=[DataRequired()])
 	submit = SubmitField('Sign In')
 
 app = Flask(__name__)
@@ -62,8 +61,8 @@ def login():
 	form = LoginForm()
 	if form.validate_on_submit():
 		user = find_user_by_username(form.username.data)
-		if user is None or not user.check_password(form.password.data):
-			flash('Invalid username or password')
+		if user is None:
+			flash('Invalid username')
 			return redirect(url_for('login'))
 		login_user(user, remember=True)
 		next_page = request.args.get('next')
@@ -78,7 +77,7 @@ def register():
 		return redirect(url_for('scoreboard'))
 	form = RegistrationForm()
 	if form.validate_on_submit():
-		user = create_user(form.username.data, form.email.data, form.password.data)
+		user = create_user(form.username.data, form.email.data)
 		user.save()
 		flash('Congratulations, you are now a registered user!')
 		login_user(user, remember=True)
