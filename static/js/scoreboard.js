@@ -1,4 +1,4 @@
-const max_feed_length = 30;
+const max_feed_length = 8;
 
 $(document).ready(function(){
 	function sortTable() {
