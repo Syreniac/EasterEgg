@@ -44,7 +44,7 @@ def scoreboard():
 @login_required
 def easter_egg(easter_egg ):
 	key = request.args.get('key')
-	if not validate_egg_key(easter_egg, key):
+	if not egg_exists(easter_egg) or not validate_egg_key(easter_egg, key):
 		return render_template('stop_cheating.html', title="Stop cheating!")
 	if easter_egg in current_user.eggs:
 		return render_template("duplicateEgg.html", title="You've already found this egg!")
