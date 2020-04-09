@@ -32,7 +32,10 @@ def create_user(username, email):
 	return User(username = username, email = email)
 
 def load_user(user_id):
-	return User(**db[int(user_id)])
+	if int(user_id) in db:
+		return User(**db[int(user_id)])
+	else:
+		return None;
 	
 def find_user_by_username(username):
 	for user in db:
