@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css?family=Lobster');
+
+* {
+  margin: 0px;
+  padding: 0px;
+  font-family: 'Lobster', cursive;
+  z-index: 2;
+}
+
+.content {
+	width: 100%;
+	display: block;
+}
+
+#liveDiv {
+	float: right;
+	height: 100%;
+	margin: 1%;
+	width: 48%;
+	position: sticky;
+	top: 5em;
+}
+
+thead {
+	position: sticky;
+	top: 5em;
+}
+
+a {
+	display: block;
+	text-align: center;
+	z-index: 3;
+}
+
+input {
+	width: 100%;
+	background: transparent;
+	font-size: 20px;
+}
+
+input[type=button], input[type=submit], input[type=reset] {
+	max-width: 50%;
+}
+
+#scoreboardDiv {
+	display: block;
+	width: 100%;
+}
+
+#scoreTable {
+	overflow-y: auto;
+	float: left;
+	width: 48%;
+	margin: 1%;
+	margin-bottom: 25%;
+	z-index: -1 !important;
+}
+
+#scoreTable * {
+	z-index: -1 !important;
+}
+
+.feed {
+	overflow-y: auto;
+}
+
+html {
+	min-height: 100%
+}
+
+body {
+  margin-top: 3em;
+  background-color: lightskyblue; 
+}
+
+h1 {
+  font-family: 'Lobster', cursive;
+  font-size: 45px;
+  color: #6D59A7;;
+  text-shadow: 3px 0px 0px white;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+h2 {
+  font-family: 'Lobster', cursive;
+  font-size: 45px;
+  color: #6D59A7;;
+  text-shadow: 2px 0px 0px white;
+  text-align: center;
+}
+
+
+th {
+  font-family: 'Lobster', cursive;
+  font-size: 45px;
+  color: #6D59A7;
+  text-shadow: 2px 0px 0px white;
+  padding: 15px;
+  padding-top: 0px;
+}
+
+td {
+  font-family: 'Lobster', cursive;
+  font-size: 30px;
+  color: #6D59A7;
+  text-shadow: 2px 0px 0px white;
+}
+
+.score {
+	text-align: center;
+}
+
+@keyframes egg-left-animation {
+  0% {
+    transform: rotate(-15deg);
+  }
+  100% {
+    transform: rotate(-10deg);
+  }
+}
+@keyframes egg-right-animation {
+  0% {
+    transform: rotate(30deg);
+  }
+  100% {
+    transform: rotate(25deg);
+  }
+}
+
+.feedElement {
+	display: block;
+	text-align: center;
+}
+
+#fringe { 
+  width: 100%;
+  height: auto;
+  position: fixed;
+  left:0;
+  bottom: 0;
+  overflow: hidden;
+}
+
+.bunny {
+	margin: auto;
+	display: block;
+	width: 15%;
+	min-width: unset;
+}
