@@ -3,7 +3,7 @@
 	{% block head %}
         <title>Easter Egg Hunt</title>
 		<link rel="stylesheet" href="{{ url_for('static', filename='css/easterEgg.css') }}">
-		<link rel="preload" href="https://cdn.clipart.email/cb3b4b3779fb910952adc0a17aa8585e_easter-grass-transparent-png-clip-art-image-gallery-_8000-1759.png" as="image"/>
+		<link rel="preload" href="{{ url_for('static', filename='img/easter.png') }}" as="image"/>
 		<script src="{{ url_for('static', filename='js/eggify.js') }}"></script>
 	{% endblock %}
     </head>
@@ -19,6 +19,6 @@
         {% endwith %}-->
         {% block content %}{% endblock %}
 		
-		<img src="https://cdn.clipart.email/cb3b4b3779fb910952adc0a17aa8585e_easter-grass-transparent-png-clip-art-image-gallery-_8000-1759.png" alt="Easter" id="fringe"/>
+		<img src="{{ url_for('static', filename='img/easter.png') }}" alt="Easter" id="fringe"/>
     </body>
 </html>
